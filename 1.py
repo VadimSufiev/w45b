@@ -4,7 +4,7 @@ from serial import Serial
 import sys
 import time
 
-arduino = Serial('COM31', 9600, timeout =1)
+arduino = Serial('COM12', 9600, timeout =1)
 def prepare_coomand(*args):
 	
 	b = args[0] + 48;
