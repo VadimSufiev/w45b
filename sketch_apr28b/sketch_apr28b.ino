@@ -17,14 +17,35 @@ void loop() {
     if (incomingByte == 49)
     {
       prizm.setMotorPower(1, 25);                
-      prizm.setMotorPower(2, -25);
+      prizm.setMotorPower(2, -20);
+   
     }
 
     if (incomingByte == 50)
     {
+      prizm.setMotorPower(1, -25);                
+      prizm.setMotorPower(2, 20);
+     
+    }
+    if (incomingByte == 51)
+    {
+      prizm.setMotorPower(1, -25);                
+      prizm.setMotorPower(2, -25);
+      
+    }
+    if (incomingByte == 52)
+    {
+      prizm.setMotorPower(1, 25);                
+      prizm.setMotorPower(2, 25);
+  
+    }
+        if (incomingByte == 53)
+    {
       prizm.setMotorPower(1, 0);                
       prizm.setMotorPower(2, 0);
+  
     }
+    
 
     Serial.println(incomingByte, DEC);
   }

@@ -4,7 +4,7 @@ from serial import Serial
 import sys
 import time
 
-arduino = Serial('COM12', 9600, timeout =1)
+arduino = Serial('COM6', 9600, timeout =1)
 def prepare_coomand(*args):
 	
 	b = args[0] + 48;
@@ -29,34 +29,40 @@ def serial_print():
 
 
 root = Tk()
-def f():
+def f(event):
 	print("еду_вперед")
 	b =  49;
 	arduino.write(b.to_bytes(length=1, byteorder='big', signed=False))
 	serial_print()
 
-def r():
+def r(event):
 	print("еду_назад")
 	b =  50;
 	arduino.write(b.to_bytes(length=1, byteorder='big', signed=False))
 	serial_print()
 
-def p():
+def p(event):
 	print("поворачиваю_вправо")
 	b =  51;
 	arduino.write(b.to_bytes(length=1, byteorder='big', signed=False))
 	serial_print()
 
-def l():
+def l(event):
 	print("поворачиваю_влево")
 	b =  52;
 	arduino.write(b.to_bytes(length=1, byteorder='big', signed=False))
 	serial_print()
+def x(event):
+	print("стою")
+	b =  53;
+	arduino.write(b.to_bytes(length=1, byteorder='big', signed=False))
+	serial_print()
+
 
 
 b = Button(root, text = "вперед", command=f)
-
-b.bind('<Button-1>')
+b.bind('<Button-1>',f)
+b.bind('<ButtonRelease-1>',x)
 
 b.grid(column = 2, row = 1)
 
@@ -64,7 +70,8 @@ b.grid(column = 2, row = 1)
 
 b2 = Button(root, text = "право", command=p)
 
-b2.bind('<Button-2>')
+b2.bind('<Button-1>',p)
+b2.bind('<ButtonRelease-1>',x)
 
 b2.grid(column = 3, row = 2)
 
@@ -72,17 +79,21 @@ b2.grid(column = 3, row = 2)
 
 b3 = Button(root, text = "назад", command=r)
 
-b3.bind('<Button-3>')
+b3.bind('<Button-1>',r)
+b3.bind('<ButtonRelease-1>',x)
 
-b3.grid(column = 2, row = 2)
+b3.grid(column = 2, row = 3)
 
 
 
 b4 = Button(root, text = "лево", command=l)
 
-b4.bind('<Button-4>')
+b4.bind('<Button-1>',l)
+b4.bind('<ButtonRelease-1>',x)
 
 b4.grid(column = 1, row = 2)
+
+
 
 root.mainloop()
 
